@@ -1,11 +1,15 @@
 package com.example.appwithusers1101.controllers;
 
+import com.example.appwithusers1101.data.User;
 import com.example.appwithusers1101.data.UserRepository;
 import com.example.appwithusers1101.dto.UserLoginDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -22,9 +26,9 @@ public class UserController {
         model.addAttribute("hasError", false);
         return "login";
     }
-
+//HttpSession session
     @PostMapping("")
-    public String login(UserLoginDto userData, Model model) {
+    public String login(UserLoginDto userData, Model model, HttpServletRequest request) {
 
         var user = repo.login(userData.getEmail(), userData.getPwd());
 
@@ -34,13 +38,19 @@ public class UserController {
             return "login";
         }
 
+        request.getSession().setAttribute("User", user);
+
+        model.addAttribute("user", user);
+
         return "profile";
     }
 
     @GetMapping("/profile")
-    public String getProfile(Model model) {
+    public String getProfile(Model model, HttpSession session) {
 
+        var user = (User)session.getAttribute("User");
 
+        model.addAttribute("user", user);
 
         return "profile";
     }
