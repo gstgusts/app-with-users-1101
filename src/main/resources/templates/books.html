@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<h1>Books</h1>
+<input type="date">
+<input type="datetime-local">
+<ul>
+    <li th:each="book: ${books}" th:text="${book.getTitle() +' '+book.getPublishingDate() + ' ' + book.getPubDate1().toString()+ ' ' + book.getLocalDate()+ ' ' + book.getTimestamp()}"></li>
+</ul>
+</body>
+</html>

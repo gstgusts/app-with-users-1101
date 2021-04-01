@@ -9,7 +9,6 @@
 </head>
 <body>
 <div class="container">
-
     <div class="row align-items-center">
         <div class="col">
 
@@ -24,6 +23,7 @@
                     <label for="pwd" class="form-label">Password</label>
                     <input type="password" class="form-control" id="pwd" name="pwd">
                 </div>
+                <input type="datetime-local" name="time">
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <div th:if="${hasError}" class="alert alert-danger container-with-top-margin" role="alert" th:text="${error}">
