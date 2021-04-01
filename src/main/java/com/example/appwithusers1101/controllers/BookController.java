@@ -4,6 +4,7 @@ import com.example.appwithusers1101.data.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BookController {
@@ -19,5 +20,10 @@ public class BookController {
         var books = repo.getBooks();
         model.addAttribute("books", books);
         return "books";
+    }
+
+    @PostMapping("/books")
+    public String getModalData() {
+        return "test";
     }
 }
